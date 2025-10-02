@@ -8,13 +8,13 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 220 25% 10%;
+    --background: 222 47% 5%;
     --foreground: 210 40% 98%;
 
-    --card: 220 23% 13%;
+    --card: 222 45% 8%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 220 25% 10%;
+    --popover: 222 47% 5%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 217 91% 60%;
@@ -23,25 +23,29 @@ All colors MUST be HSL.
     --secondary: 262 83% 58%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 220 20% 20%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 215 20% 70%;
 
     --accent: 173 80% 50%;
-    --accent-foreground: 220 25% 10%;
+    --accent-foreground: 222 47% 5%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
+    --border: 220 20% 15%;
+    --input: 220 20% 18%;
     --ring: 217 91% 60%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Custom gradient colors */
+    /* Enhanced gradient colors */
     --gradient-from: 217 91% 60%;
     --gradient-via: 262 83% 58%;
     --gradient-to: 173 80% 50%;
+    
+    /* Glass morphism */
+    --glass-bg: 222 45% 8%;
+    --glass-border: 220 20% 20%;
   }
 }
 
@@ -67,24 +71,77 @@ All colors MUST be HSL.
   .gradient-accent {
     background: linear-gradient(135deg, hsl(var(--gradient-via)), hsl(var(--gradient-to)));
   }
+  
+  .gradient-radial {
+    background: radial-gradient(circle at 50% 50%, hsl(var(--gradient-from) / 0.15), transparent 70%);
+  }
 
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, hsl(var(--gradient-from)), hsl(var(--gradient-via)), hsl(var(--gradient-to)));
   }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 40px rgba(91, 150, 255, 0.3),
+                0 0 80px rgba(139, 92, 246, 0.2),
+                inset 0 0 40px rgba(91, 150, 255, 0.1);
+  }
 
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-in;
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(91, 150, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(91, 150, 255, 0.4);
     }
   }
 }
